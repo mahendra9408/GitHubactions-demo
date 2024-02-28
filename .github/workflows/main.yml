@@ -18,6 +18,7 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
+          cache: maven
 
       - name: Build and dockerize with Jib
         run: mvn -X clean --file pom.xml com.google.cloud.tools:jib-maven-plugin:3.1.1:build -Dimage=public.ecr.aws/u1u3e1y1/github-actions:v1
