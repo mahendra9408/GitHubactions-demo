@@ -17,16 +17,10 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-          distribution: 'adopt'
-
-      - name: Check Maven version
-        run: mvn -version
-  
-      - name: Clean and ompile Java project
-        run: mvn clean compile
+          distribution: 'temurin'
 
       - name: Build and dockerize with Jib
-        run: mvn -X clean com.google.cloud.tools:jib-maven-plugin:3.1.1:build -Dimage=public.ecr.aws/u1u3e1y1/github-actions:v1
+        run: mvn -X clean --file pom.xml com.google.cloud.tools:jib-maven-plugin:3.1.1:build -Dimage=public.ecr.aws/u1u3e1y1/github-actions:v1
 
       - name: Login to AWS ECR
         run: |
