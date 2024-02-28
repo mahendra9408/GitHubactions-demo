@@ -22,7 +22,7 @@
                 <configuration>
                     <!-- Specify the image to build -->
                     <to>
-                        <image>public.ecr.aws/u1u3e1y1/github-actions:v1</image>
+                        <image>public.ecr.aws/u1u3e1y1/github-actions</image>
                     </to>
                 </configuration>
             </plugin>
