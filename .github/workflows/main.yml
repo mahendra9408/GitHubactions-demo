@@ -20,7 +20,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Build and dockerize with Jib
-        run: mvn compile com.google.cloud.tools:jib-maven-plugin:3.4.0:build -Dimage=ghcr.io/mahendra9408/githubactions-demo:v1
+        run: mvn compile com.google.cloud.tools:jib-maven-plugin:3.4.0:build -Dimage=ghcr.io/mahendra9408/GitHubactions-demo:v1
 
       - name: Push Docker image to GitHub Container Registry
         run: |
