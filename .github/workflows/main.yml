@@ -22,8 +22,8 @@ jobs:
 
       - name: Build and dockerize with Jib
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: AKIA4MTWIBZZTJTBHGU7
+          AWS_SECRET_ACCESS_KEY: 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
           AWS_REGION: 'us-east-1'
         run: mvn compile com.google.cloud.tools:jib-maven-plugin:3.3.1:build -Dimage=public.ecr.aws/u1u3e1y1/github-actions:v1
 
