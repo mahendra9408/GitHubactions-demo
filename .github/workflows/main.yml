@@ -21,18 +21,9 @@ jobs:
       - name: Build and dockerize with Jib
         run: mvn compile com.google.cloud.tools:jib-maven-plugin:3.1.1:build -Dimage=public.ecr.aws/u1u3e1y1/github-actions:v1
 
-      - name: Enable SAST scan with Fortify
-        # Add commands to run Fortify here
-
       - name: Login to AWS ECR
         run: |
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/u1u3e1y1/github-actions
 
       - name: Push image to AWS ECR
         run: docker push public.ecr.aws/u1u3e1y1/github-actions:v1
-
-      - name: Scan Docker image in ECR
-        # Add commands to scan Docker image in ECR here
-
-      - name: Deploy with kubectl
-        # Add commands to deploy with kubectl here
