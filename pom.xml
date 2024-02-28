@@ -29,12 +29,12 @@
         </plugins>
     </build>
     <settings>
-  <servers>
-    <server>
-      <id>github</id>
-      <username>mahendra9408</username>
-      <password>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</password>
-    </server>
-  </servers>
-</settings>
-</project>
+      <servers>
+        <server>
+          <id>github</id>
+          <username>mahendra9408</username>
+          <password>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</password>
+         </server>
+        </servers>
+      </settings>
+    </project>
