@@ -22,14 +22,14 @@ jobs:
 
       - name: Build and dockerize with Jib
         env:
-          AWS_ACCESS_KEY_ID: AKIA4MTWIBZZ2RDB52IL
-          AWS_SECRET_ACCESS_KEY: 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
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-1'
         run: mvn compile com.google.cloud.tools:jib-maven-plugin:3.3.1:build -Dimage=public.ecr.aws/u1u3e1y1/github-actions:v1
 
       - name: Push image to AWS ECR
         env:
-          AWS_ACCESS_KEY_ID: AKIA4MTWIBZZ2RDB52IL
-          AWS_SECRET_ACCESS_KEY: 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
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-1'
         run: docker push public.ecr.aws/u1u3e1y1/github-actions:v1
