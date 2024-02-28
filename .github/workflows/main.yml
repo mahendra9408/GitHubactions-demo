@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -25,7 +25,7 @@ jobs:
       - name: Login to AWS ECR
         run: |
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/u1u3e1y1
-          docker login --username AWS --password-stdin public.ecr.aws/u1u3e1y1/github-actions
+          docker login --username AWS --password-stdin public.ecr.aws/u1u3e1y1
 
       - name: Push image to AWS ECR
         run: docker push public.ecr.aws/u1u3e1y1/github-actions:v1
