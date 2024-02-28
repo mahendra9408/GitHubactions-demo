@@ -19,6 +19,9 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
+      - name: compile
+        run: mvn compile
+
       - name: Build and dockerize with Jib
         run: mvn compile com.google.cloud.tools:jib-maven-plugin:3.1.1:build -Dimage=public.ecr.aws/u1u3e1y1/github-actions:v1
 
