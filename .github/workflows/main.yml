@@ -29,3 +29,28 @@ jobs:
 
       - name: Build and dockerize with Jib
         run: mvn compile com.google.cloud.tools:jib-maven-plugin:3.4.0:build -Dimage=851725258355.dkr.ecr.us-east-1.amazonaws.com/githubactions-demo:v1
+
+  fortify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Fortify tools
+        uses: fortify/github-action/setup@v1
+        with:
+          tool-definitions: https://github.com/fortify/tool-definitions/releases/download/v1/tool-definitions.yaml.zip
+          export-path: true
+          fcli: latest
+          sc-client: 23.1.0
+          fod-uploader: latest
+          vuln-exporter: v2
+          bugtracker-utility: skip
+          debricked-cli: skip
+
+      - name: Run fcli from PATH
+        run: fcli -V
+
+      - name: Run fcli using FCLI_CMD environment variable
+        run: ${FCLI_CMD} -V
