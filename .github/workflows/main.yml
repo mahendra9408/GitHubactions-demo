@@ -20,11 +20,12 @@ jobs:
           distribution: 'adopt'
 
       - name: Login to Amazon ECR
-        run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 851725258355.dkr.ecr.us-east-1.amazonaws.com
-
-      - name: Build and dockerize with Jib
+        run: |
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 851725258355.dkr.ecr.us-east-1.amazonaws.com
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: us-east-1
+
+      - name: Build and dockerize with Jib
         run: mvn compile com.google.cloud.tools:jib-maven-plugin:3.4.0:build -Dimage=851725258355.dkr.ecr.us-east-1.amazonaws.com/githubactions-demo:v1
