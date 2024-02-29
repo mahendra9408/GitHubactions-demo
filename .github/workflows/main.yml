@@ -19,26 +19,13 @@ jobs:
           java-version: '18'
           distribution: 'adopt'
 
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
       - name: Build and dockerize with Jib
         env:
-          AWS_ACCESS_KEY_ID: AKIA4MTWIBZZ2RDB52IL
-          AWS_SECRET_ACCESS_KEY: 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
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: us-east-1
-        run: mvn compile com.google.cloud.tools:jib-maven-plugin:3.4.0:build -Dimage=851725258355.dkr.ecr.us-east-1.amazonaws.com/github-actions:v1
-
-      #- name: Push image to AWS ECR
-       # env:
-        #  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-         # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          #AWS_REGION: 'us-east-1'
-        #run: docker push public.ecr.aws/u1u3e1y1/github-actions:v1
-
-
-      - name: Push Docker image to Amazon ECR
-        env:
-          AWS_REGION: us-east-1
-          AWS_ACCOUNT_ID: 851725258355
-        run: |
-          aws ecr get-login-password --region ${{ env.AWS_REGION }} | docker login --username AWS --password-stdin ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com
-          docker tag myimage:latest ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/github-actions:v1
-          docker push ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/github-actions:v1
+        run: mvn compile com.google.cloud.tools:jib-maven-plugin:3.4.0:build -Dimage=851725258355.dkr.ecr.us-east-1.amazonaws.com/githubactions-demo:v1
