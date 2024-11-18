@@ -31,7 +31,7 @@ jobs:
         run: mvn compile com.google.cloud.tools:jib-maven-plugin:3.4.0:build -Dimage=851725258355.dkr.ecr.us-east-1.amazonaws.com/githubactions-demo:v1
 
   fortify:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
